@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Flight alerts -> Telegram. Designed to run on GitHub Actions every ~5 minutes.
+Flight alerts -> ntfy. Designed to run on GitHub Actions every ~5 minutes.
 Stdlib only, so the workflow needs no pip install.
 
 Three tiers, so the bot stays worth reading:
@@ -12,9 +12,11 @@ Every run first proves the data feed is alive. If it isn't we say so rather than
 reporting a quiet sky - a silently dead feed is the one failure that makes a
 monitor worthless.
 """
+import html
 import json
 import math
 import os
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -24,9 +26,8 @@ from datetime import datetime, timezone
 import tracks
 
 BASE = "https://api.adsb.lol"
-TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
-CHAT = os.environ.get("TELEGRAM_CHAT_ID", "")
-TG = f"https://api.telegram.org/bot{TOKEN}"
+NTFY_BASE = os.environ.get("NTFY_BASE", "https://ntfy.sh").rstrip("/")
+NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")
 STATE_F = "state.json"
 UA = "flight-alerts/1.0 (hobby aviation monitor)"
 
@@ -35,7 +36,7 @@ GREEN_INTERVAL = 24 * 60 * 60  # daily roundup
 SEEN_TTL = 6 * 60 * 60         # forget an aircraft after 6h
 SCAN_INTERVAL = 5 * 60         # expensive regional scan: only every 5 min
 STALE_MAX = 15 * 60            # never compare against a position older than this
-DIGEST_IMAGES = 10             # Telegram allows 10 per media group
+DIGEST_IMAGES = 10             # max images per digest flush
 
 # Flight-school and light-GA types orbit constantly on training circuits and
 # were ~150 false hits per run in testing. A circling C172 is not a story.
@@ -154,54 +155,50 @@ def bearing(lat1, lon1, lat2, lon2):
     return (math.degrees(math.atan2(y, x)) + 360) % 360
 
 
-# ---------------------------------------------------------------- telegram
-def tg(method, params, files=None):
-    if not TOKEN or not CHAT:
-        print(f"[dry-run] {method}: {params.get('text', params.get('caption', ''))[:200]}")
+# ---------------------------------------------------------------- ntfy
+def _html_to_plain(s):
+    s = re.sub(r"<br\s*/?>", "\n", s, flags=re.I)
+    s = re.sub(r"<[^>]+>", "", s)
+    return html.unescape(s)
+
+
+def _ascii_header(s):
+    return (s or "").encode("ascii", "ignore").decode("ascii").strip()
+
+
+def send(text, fr24=None, photo=None, title="Flight Alerts", priority="default"):
+    plain = _html_to_plain(text)
+    if not NTFY_TOPIC:
+        print(f"[dry-run] ntfy ({title}): {plain[:200]}")
         return True
-    url = f"{TG}/{method}"
+
+    url = f"{NTFY_BASE}/{urllib.parse.quote(NTFY_TOPIC)}"
+    headers = {
+        "Title": _ascii_header(title)[:200] or "Flight Alerts",
+        "Priority": priority,
+        "User-Agent": UA,
+    }
+    if fr24:
+        headers["Click"] = fr24
+        plain = f"{plain}\n\n{fr24}"
+
     try:
-        if files:
-            boundary = "----flightalerts7f3a2b"
-            body = b""
-            for k, v in params.items():
-                body += (f"--{boundary}\r\nContent-Disposition: form-data; name=\"{k}\"\r\n\r\n"
-                         f"{v}\r\n").encode()
-            for k, (fname, blob) in files.items():
-                body += (f"--{boundary}\r\nContent-Disposition: form-data; name=\"{k}\"; "
-                         f"filename=\"{fname}\"\r\nContent-Type: image/png\r\n\r\n").encode()
-                body += blob + b"\r\n"
-            body += f"--{boundary}--\r\n".encode()
-            req = urllib.request.Request(url, data=body, headers={
-                "Content-Type": f"multipart/form-data; boundary={boundary}"})
-        else:
-            req = urllib.request.Request(url, data=urllib.parse.urlencode(params).encode())
-        with urllib.request.urlopen(req, timeout=30) as r:
-            return json.loads(r.read()).get("ok", False)
-    except Exception as e:
-        print(f"telegram {method} failed: {e}", file=sys.stderr)
-        return False
-
-
-def send(text, fr24=None, photo=None):
-    params = {"chat_id": CHAT, "parse_mode": "HTML", "disable_web_page_preview": "true"}
-    if fr24:
-        # A plain URL as well as the button: long-pressable, and it survives
-        # being forwarded to somewhere the inline keyboard does not.
-        text = f"{text}\n\n{fr24}"
-    if fr24:
-        params["reply_markup"] = json.dumps(
-            {"inline_keyboard": [[{"text": "Open in Flightradar24", "url": fr24}]]})
-    if photo:
-        try:
+        if photo:
             with open(photo, "rb") as f:
                 blob = f.read()
-            params["caption"] = text[:1024]
-            return tg("sendPhoto", params, {"photo": ("track.png", blob)})
-        except Exception:
-            pass
-    params["text"] = text[:4096]
-    return tg("sendMessage", params)
+            headers["Filename"] = "track.png"
+            msg_line = _ascii_header(plain.replace("\n", " | "))[:800]
+            if msg_line:
+                headers["X-Message"] = msg_line
+            req = urllib.request.Request(url, data=blob, headers=headers, method="PUT")
+        else:
+            req = urllib.request.Request(url, data=plain.encode("utf-8"), headers=headers, method="POST")
+
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return 200 <= r.status < 300
+    except Exception as e:
+        print(f"ntfy send failed: {e}", file=sys.stderr)
+        return False
 
 
 # ---------------------------------------------------------------- helpers
@@ -361,8 +358,8 @@ def hello():
     Without this, a silent bot is ambiguous: you cannot tell a broken pipeline
     from a quiet sky. This makes the wiring self-evident.
     """
-    if not TOKEN or not CHAT:
-        print("[dry-run] startup ping suppressed - no telegram secrets set")
+    if not NTFY_TOPIC:
+        print("[dry-run] startup ping suppressed - no NTFY_TOPIC set")
         return 0
     send("\u2708\ufe0f <b>Flight alerts is live</b>\n\n"
          "Watching for:\n"
@@ -370,15 +367,16 @@ def hello():
          "\U0001f30d unusual routings, drones and rare types - hourly digest\n"
          "\U0001f305 a roundup every 24h\n\n"
          "<i>Polling every 60 seconds. Most of the time you will hear nothing, "
-         "which is the point.</i>")
+         "which is the point.</i>",
+         title="Flight Alerts Live")
     print("startup ping sent")
     return 0
 
 
 def test_alert():
     """Send sample alerts using real live traffic, so the format is honest."""
-    if not TOKEN or not CHAT:
-        print("no telegram secrets set")
+    if not NTFY_TOPIC:
+        print("no NTFY_TOPIC set")
         return 1
 
     d = get("/v2/point/51.5/0.0/250") or {}
@@ -386,7 +384,8 @@ def test_alert():
           if x.get("hex") and x.get("lat") is not None and not is_noise(x)]
     if not ac:
         send("\U0001f9ea <b>Test</b>\n\nNo suitable aircraft airborne to demo with, "
-             "but the pipeline works - you are reading this.")
+             "but the pipeline works - you are reading this.",
+             title="Flight Alerts Test")
         return 0
 
     a = ac[0]
@@ -402,7 +401,7 @@ def test_alert():
          + f"Position: {a['lat']:.3f}, {a['lon']:.3f}\n\n"
          "<i>A real one looks exactly like this, with the aircraft's track "
          "rendered above.</i>",
-         fr24_link(a), img)
+         fr24_link(a), img, title="Test Emergency Alert", priority="high")
 
     others = ac[1:4]
     body = "\n\n".join(
@@ -412,7 +411,8 @@ def test_alert():
          f"\U0001f4e1 <b>Worth a look</b> — {len(others)} find(s)\n\n{body}\n\n"
          "<i>The real digest carries fifth-freedom routings, drones, uncommon "
          "types and odd track shapes, with up to 10 images ranked by how "
-         "convoluted the path is.</i>")
+         "convoluted the path is.</i>",
+         title="Sample Hourly Digest")
     print(f"test alerts sent (demo aircraft: {label(a)}, shape score {cx:.1f})")
     return 0
 
@@ -439,7 +439,8 @@ def main():
         if ts - last_warn > 3600:
             send(f"⚠️ <b>Feed degraded</b>\nControl query returned {n_ctrl} "
                  f"aircraft over London (expected 300+). Not reporting an all-clear — "
-                 f"the data source is unreliable right now.")
+                 f"the data source is unreliable right now.",
+                 title="Feed Degraded")
             st["last_feed_warn"] = ts
         save_state(st)
         return 0
@@ -470,7 +471,8 @@ def main():
                 lines.append(f"Position: {a['lat']:.3f}, {a['lon']:.3f}")
             if a.get("emergency") and a["emergency"] != "none":
                 lines.append(f"Transponder reports: <code>{a['emergency']}</code>")
-            send("\n".join(lines), fr24_link(a), img)
+            send("\n".join(lines), fr24_link(a), img,
+                 title=f"SQUAWK {code} - {label(a)}", priority="urgent")
 
     # 3. YELLOW TIER - interesting, queued for the digest --------------------
     run = st.get("run", 0) + 1
@@ -551,7 +553,8 @@ def main():
                          f"{why.capitalize()}\n"
                          f"Position: {a['lat']:.3f}, {a['lon']:.3f}\n"
                          f"Speed: {a.get('gs','?')} kt",
-                         fr24_link(a), img)
+                         fr24_link(a), img,
+                         title=f"Possible Diversion - {cs_d}", priority="high")
 
             # ODD TRACK SHAPES - the category the group actually posts.
             # Guarded against the two things that made this useless before:
@@ -603,7 +606,6 @@ def main():
     if queue and ts - st.get("last_yellow", 0) > YELLOW_INTERVAL:
         stats["finds"] += len(queue)
 
-        # Full text digest, chunked - Telegram caps a message at 4096 chars.
         head = f"\U0001f4e1 <b>Worth a look</b> - {len(queue)} find(s)\n\n"
         chunk, chunks = head, []
         for q in queue:
@@ -615,7 +617,7 @@ def main():
         if chunk.strip():
             chunks.append(chunk)
         for c in chunks:
-            send(c)
+            send(c, title="Flight Alerts Digest")
 
         # Pictures for the best-looking tracks. Rendering costs one fetch each,
         # so only a bounded set of candidates is rendered, then ranked by how
@@ -629,7 +631,7 @@ def main():
         scored.sort(key=lambda t: -t[0])
         for cx, q, img in scored[:DIGEST_IMAGES]:
             send(f"{q['icon']} {q['text']}\n<i>shape score {cx:.1f}x</i>",
-                 q.get("fr24"), img)
+                 q.get("fr24"), img, title=f"Track: {q['kind']}")
 
         print(f"digest sent: {len(queue)} finds, {len(scored[:DIGEST_IMAGES])} images")
         queue = []
@@ -644,7 +646,8 @@ def main():
              f"Finds queued: <b>{stats['finds']}</b>\n"
              f"Aircraft observed: <b>{sum(counts.values()):,}</b>\n\n"
              "Most common types seen:\n"
-             + "\n".join(f"  {t} — {c:,}" for t, c in top))
+             + "\n".join(f"  {t} — {c:,}" for t, c in top),
+             title="Daily Flight Roundup")
         st["last_green"] = ts
         stats = {"emergencies": 0, "diversions": 0, "finds": 0}
 
