@@ -37,6 +37,7 @@ SEEN_TTL = 6 * 60 * 60         # forget an aircraft after 6h
 SCAN_INTERVAL = 5 * 60         # expensive regional scan: only every 5 min
 STALE_MAX = 15 * 60            # never compare against a position older than this
 DIGEST_IMAGES = 10             # max images per digest flush
+SCAN_RADIUS_NM = 250           # radius per region query in nautical miles
 
 # Flight-school and light-GA types orbit constantly on training circuits and
 # were ~150 false hits per run in testing. A circling C172 is not a story.
@@ -45,35 +46,51 @@ TRAINERS = {"C172", "C152", "C162", "C182", "PA28", "PA38", "PA44", "P28A", "P28
             "AA5", "GROB", "T206", "C206", "C208", "RV7", "RV8", "RV10", "EVOP",
             "G115", "TECN", "SLG2", "SLG4", "ULAC", "GLID", "B06", "R44", "R22",
             "H500", "C150", "C120", "P32R", "PA32", "BE76", "C72R", "C77R"}
-ROUTE_BUDGET = 25              # max NEW route lookups per scan (cache makes repeats free)
-ROUTE_CACHE_MAX = 4000         # routes are static, so the cache compounds
+ROUTE_BUDGET = 40              # max NEW route lookups per scan (cache makes repeats free)
+ROUTE_CACHE_MAX = 5000         # routes are static, so the cache compounds
 
 # Airline ICAO prefix -> home country, for fifth-freedom detection.
 AIRLINE_CC = {
     "CES": "CN", "CCA": "CN", "CSN": "CN", "CHH": "CN", "CXA": "CN", "UAE": "AE",
     "ETD": "AE", "QTR": "QA", "SVA": "SA", "KAC": "KW", "SIA": "SG", "ETH": "ET",
-    "MSR": "EG", "RJA": "JO", "ELY": "IL", "THY": "TR", "AFL": "RU", "AAL": "US",
-    "UAL": "US", "DAL": "US", "BAW": "GB", "VIR": "GB", "AFR": "FR", "DLH": "DE",
-    "KLM": "NL", "AZA": "IT", "ITY": "IT", "IBE": "ES", "TAP": "PT", "SWR": "CH",
-    "ANA": "JP", "JAL": "JP", "KAL": "KR", "AAR": "KR", "CPA": "HK", "EVA": "TW",
-    "CAL": "TW", "THA": "TH", "MAS": "MY", "GIA": "ID", "QFA": "AU", "ANZ": "NZ",
-    "LAN": "CL", "TAM": "BR", "GLO": "BR", "AZU": "BR", "ARG": "AR", "AVA": "CO",
-    "ACA": "CA", "AIC": "IN", "IGO": "IN", "GTI": "US", "FDX": "US", "UPS": "US",
-    "CLX": "LU", "MPH": "NL", "NCA": "JP", "BOX": "DE", "TAY": "BE", "SAS": "SE",
-    "FIN": "FI", "AUA": "AT", "LOT": "PL", "AEE": "GR", "RAM": "MA", "KQA": "KE",
-    "SAA": "ZA", "HVN": "VN", "ABW": "RU", "AZG": "AZ", "UZB": "UZ", "PIA": "PK",
+    "MSR": "EG", "RJA": "JO", "ELY": "IL", "THY": "TR", "PGT": "TR", "AJT": "TR",
+    "SXS": "TR", "FHY": "TR", "AFL": "RU", "AAL": "US", "UAL": "US", "DAL": "US",
+    "BAW": "GB", "VIR": "GB", "AFR": "FR", "DLH": "DE", "KLM": "NL", "AZA": "IT",
+    "ITY": "IT", "IBE": "ES", "TAP": "PT", "SWR": "CH", "ANA": "JP", "JAL": "JP",
+    "KAL": "KR", "AAR": "KR", "CPA": "HK", "EVA": "TW", "CAL": "TW", "THA": "TH",
+    "MAS": "MY", "GIA": "ID", "QFA": "AU", "ANZ": "NZ", "LAN": "CL", "TAM": "BR",
+    "GLO": "BR", "AZU": "BR", "ARG": "AR", "AVA": "CO", "ACA": "CA", "AIC": "IN",
+    "IGO": "IN", "GTI": "US", "FDX": "US", "UPS": "US", "CLX": "LU", "MPH": "NL",
+    "NCA": "JP", "BOX": "DE", "TAY": "BE", "SAS": "SE", "FIN": "FI", "AUA": "AT",
+    "LOT": "PL", "AEE": "GR", "RAM": "MA", "KQA": "KE", "SAA": "ZA", "HVN": "VN",
+    "ABW": "RU", "AZG": "AZ", "UZB": "UZ", "PIA": "PK", "IRA": "IR", "IRM": "IR",
+    "IAW": "IQ", "MEA": "LB", "RBG": "JO", "GFA": "BH", "OMA": "OM", "KUW": "KW",
 }
 
 # 7600 (radio failure) deliberately omitted: in testing every instance was a
 # non-event - a taxiing airliner, a light trainer, a manufacturer's test jet.
 SQUAWKS = {"7700": "GENERAL EMERGENCY", "7500": "HIJACK"}
 
-# Rotating scan regions - full sweep every ~4 runs.
+# Priority regions - scanned on EVERY scan cycle (Turkey + Middle East).
+PRIORITY_REGIONS = [
+    (41.01, 28.98, "Marmara & Istanbul"),
+    (41.00, 39.72, "Trabzon & E Black Sea"),
+    (38.42, 27.14, "Aegean & Izmir"),
+    (39.93, 32.86, "Central Anatolia & Ankara"),
+    (36.90, 30.71, "S Coast & Antalya"),
+    (33.85, 35.86, "Levant & E Med"),
+    (33.31, 44.37, "Iraq"),
+    (34.50, 50.00, "Iran"),
+    (25.25, 55.30, "Persian Gulf"),
+    (24.71, 46.68, "Saudi Arabia"),
+]
+
+# Rotating global scan regions - full sweep every ~6 scans.
 REGIONS = [
     (51.5, 0.0, "W Europe"), (40.7, -74.0, "US Northeast"), (34.0, -118.2, "US West"),
-    (25.3, 55.4, "Gulf"), (1.35, 103.8, "SE Asia"), (35.7, 139.7, "Japan"),
-    (-33.9, 151.2, "Australia"), (-23.5, -46.6, "Brazil"), (19.4, -99.1, "Mexico"),
-    (-26.1, 28.2, "S Africa"), (55.7, 37.6, "Russia"), (28.6, 77.2, "India"),
+    (1.35, 103.8, "SE Asia"), (35.7, 139.7, "Japan"), (-33.9, 151.2, "Australia"),
+    (-23.5, -46.6, "Brazil"), (19.4, -99.1, "Mexico"), (-26.1, 28.2, "S Africa"),
+    (55.7, 37.6, "Russia"), (28.6, 77.2, "India"),
 ]
 
 
@@ -107,12 +124,7 @@ def fetch_route(cs):
 
 
 def resolve_routes(callsigns, cache, budget):
-    """Resolve many callsigns in parallel, filling `cache` in place.
-
-    Capped per run: without this the run makes hundreds of sequential calls and
-    gets rate-limited into a timeout. The cache is persisted in state.json, so
-    coverage grows every run and repeat callsigns cost nothing.
-    """
+    """Resolve many callsigns in parallel, filling `cache` in place."""
     todo = []
     for cs in callsigns:
         cs = (cs or "").strip().upper()
@@ -203,51 +215,35 @@ def send(text, fr24=None, photo=None, title="Flight Alerts", priority="default")
 
 # ---------------------------------------------------------------- helpers
 MIL_HINT = ("RRR", "RCH", "PAT", "CNV", "EVAC", "SPAR", "SAM", "NATO", "CFC",
-            "ASY", "IAM", "GAF", "FAB", "BRS", "AME", "HKY", "TROY", "DOOM")
+            "ASY", "IAM", "GAF", "FAB", "BRS", "AME", "HKY", "TROY", "DOOM",
+            "TRK", "HVY")
 
 
 def is_noise(a):
-    """True for private and flight-school traffic - the Cessnas and Pipers.
-
-    The distinction is in the callsign. Airlines broadcast a three-letter ICAO
-    code plus a number (BAW117, UAE349). Private aircraft broadcast their own
-    registration, so callsign and registration match, or the callsign simply
-    looks like a tail number. Military serials and callsigns are kept.
-    """
+    """True for private and flight-school traffic - the Cessnas and Pipers."""
     typ = (a.get("t") or "").upper()
     cs = (a.get("flight") or "").strip().upper()
     reg = (a.get("r") or "").strip().upper()
 
-    # Anything explicitly interesting is never noise.
-    if a.get("category") == "B6":                      # unmanned
+    if a.get("category") == "B6":
         return False
-    if any(cs.startswith(m) for m in MIL_HINT):        # known military callsigns
+    if any(cs.startswith(m) for m in MIL_HINT):
         return False
-    if reg and reg[:1].isdigit() and "-" in reg:       # US mil serial, e.g. 61-0034
+    if reg and reg[:1].isdigit() and "-" in reg:
         return False
-    if reg.startswith(("ZM", "ZZ", "ZJ", "ZK", "ZH")): # UK military serials
+    if reg.startswith(("ZM", "ZZ", "ZJ", "ZK", "ZH")):
         return False
-    if reg.isdigit() and len(reg) in (4, 6):           # BuNo / USCG serial
+    if reg.isdigit() and len(reg) in (4, 6):
         return False
 
-    # Airline callsign: three letters then a digit.
     if len(cs) >= 4 and cs[:3].isalpha() and cs[3:4].isdigit():
         return False
 
-    # Otherwise: callsign is a registration, or absent, and the type is light.
     looks_private = (not cs) or cs == reg.replace("-", "") or cs == reg
     return looks_private or typ in TRAINERS
 
 
 def fr24_link(a):
-    """Build a link the Flightradar24 app will actually open.
-
-    FR24's apple-app-site-association shows the Premium app excludes "/data*",
-    so the /data/aircraft/<reg> form can never hand off from the browser to the
-    app for Premium users. A bare callsign is claimed by both apps, and the map
-    coordinate form is not excluded either - so fall back to that rather than
-    to /data when an aircraft broadcasts no callsign.
-    """
     cs = (a.get("flight") or "").strip()
     if cs:
         return f"https://www.flightradar24.com/{cs}"
@@ -280,17 +276,7 @@ def fifth_freedom(route):
 
 
 def diversion_check(a, route):
-    """Is this aircraft heading somewhere other than where it filed?
-
-    Three guards, each removing a class of false positive found in testing:
-
-      on the ground  - an aircraft parked at its origin is trivially "far from
-                       its destination at low altitude", which is not a diversion
-      not yet flying - taxiing traffic reports a low positive altitude
-      climbing       - a departure is low and far from its destination too, so
-                       without a vertical-rate check every long-haul takeoff
-                       would alert
-    """
+    """Is this aircraft heading somewhere other than where it filed?"""
     if not route or not route.get("legs") or a.get("lat") is None:
         return None
     dest = route["legs"][-1]
@@ -299,40 +285,34 @@ def diversion_check(a, route):
 
     alt = a.get("alt_baro")
     if not isinstance(alt, int) or alt < 100:
-        return None                       # on the ground, or taxiing
+        return None
 
     if (a.get("gs") or 0) < 100:
-        return None                       # not properly airborne yet
+        return None
 
     rate = a.get("baro_rate")
     if isinstance(rate, (int, float)) and rate > 200:
-        return None                       # climbing away: a departure, not a diversion
+        return None
 
-    # Measure against the NEAREST airport on the filed route, not the last leg.
-    # Two false-positive classes disappear with this:
-    #   multi-leg  - LAN748 is SCL-GRU-EZE; descending into GRU, its real next
-    #                stop, it sits ~1,000 nm from EZE and looked like a diversion
-    #   round trip - AAL1624 is DFW-DCA-DFW, so the "destination" is the origin
-    # An aircraft descending towards anywhere it filed is not diverting.
     pts = [(nm(a["lat"], a["lon"], L["lat"], L["lon"]), L.get("iata") or "?")
            for L in route["legs"] if L.get("lat") is not None]
     if not pts:
         return None
     d, near = min(pts)
 
-    # 150 nm, not 80: descent typically begins 100-150 nm out, so an airliner at
-    # 11,000 ft with 90 nm to run is flying a normal approach.
-    if alt < 10000 and d > 150:
+    # Catches aircraft descending low well away from any filed route airport
+    # (including regional diversions where an aircraft diverts mid-route).
+    if alt < 9500 and d > 110:
         return (f"descending through {alt:,} ft, {d:,.0f} nm from the nearest "
                 f"airport on its route ({near})")
 
     trk = a.get("track")
-    if trk is not None and alt < 20000 and d > 250:
-        dest = min((L for L in route["legs"] if L.get("lat") is not None),
-                   key=lambda L: nm(a["lat"], a["lon"], L["lat"], L["lon"]))
-        brg = bearing(a["lat"], a["lon"], dest["lat"], dest["lon"])
+    if trk is not None and alt < 22000 and d > 180:
+        nearest_leg = min((L for L in route["legs"] if L.get("lat") is not None),
+                          key=lambda L: nm(a["lat"], a["lon"], L["lat"], L["lon"]))
+        brg = bearing(a["lat"], a["lon"], nearest_leg["lat"], nearest_leg["lon"])
         off = abs((trk - brg + 180) % 360 - 180)
-        if off > 120:
+        if off > 110:
             return (f"tracking {off:.0f}\u00b0 away from {near}, "
                     f"{d:,.0f} nm out at {alt:,} ft")
     return None
@@ -353,18 +333,14 @@ def save_state(s):
 
 # ---------------------------------------------------------------- main
 def hello():
-    """One-time 'I am alive' ping when the loop starts.
-
-    Without this, a silent bot is ambiguous: you cannot tell a broken pipeline
-    from a quiet sky. This makes the wiring self-evident.
-    """
     if not NTFY_TOPIC:
         print("[dry-run] startup ping suppressed - no NTFY_TOPIC set")
         return 0
     send("\u2708\ufe0f <b>Flight alerts is live</b>\n\n"
          "Watching for:\n"
-         "\U0001f6a8 emergency squawks (7700 / 7600 / 7500) - sent instantly\n"
-         "\U0001f30d unusual routings, drones and rare types - hourly digest\n"
+         "\U0001f6a8 emergency squawks (7700 / 7500) - sent instantly\n"
+         "\u26a0\ufe0f possible diversions (Turkey, Middle East & tracked zones) - instant\n"
+         "\U0001f30d unusual routings, drones, rare types & track shapes - hourly digest\n"
          "\U0001f305 a roundup every 24h\n\n"
          "<i>Polling every 60 seconds. Most of the time you will hear nothing, "
          "which is the point.</i>",
@@ -374,12 +350,11 @@ def hello():
 
 
 def test_alert():
-    """Send sample alerts using real live traffic, so the format is honest."""
     if not NTFY_TOPIC:
         print("no NTFY_TOPIC set")
         return 1
 
-    d = get("/v2/point/51.5/0.0/250") or {}
+    d = get("/v2/point/41.01/28.98/250") or get("/v2/point/51.5/0.0/250") or {}
     ac = [x for x in d.get("ac", [])
           if x.get("hex") and x.get("lat") is not None and not is_noise(x)]
     if not ac:
@@ -427,16 +402,19 @@ def main():
     stats = st.get("stats", {"emergencies": 0, "diversions": 0, "finds": 0})
     routes = st.get("routes", {})
     prev = st.get("prev", {})
-    if not st:  # cold start: don't fire an empty digest/roundup on the very first run
+    bad_streak = st.get("feed_bad_streak", 0)
+    if not st:
         st["last_yellow"] = st["last_green"] = ts
 
     # 1. LIVENESS CONTROL ---------------------------------------------------
     ctrl = get("/v2/point/51.5/0.0/250")
     n_ctrl = (ctrl or {}).get("total", 0)
     if not ctrl or n_ctrl < 50:
-        print(f"FEED DEGRADED - control returned {n_ctrl} (expected 300+)")
+        bad_streak += 1
+        st["feed_bad_streak"] = bad_streak
+        print(f"FEED DEGRADED (streak {bad_streak}) - control returned {n_ctrl} (expected 300+)")
         last_warn = st.get("last_feed_warn", 0)
-        if ts - last_warn > 3600:
+        if bad_streak >= 2 and ts - last_warn > 3600:
             send(f"⚠️ <b>Feed degraded</b>\nControl query returned {n_ctrl} "
                  f"aircraft over London (expected 300+). Not reporting an all-clear — "
                  f"the data source is unreliable right now.",
@@ -444,6 +422,8 @@ def main():
             st["last_feed_warn"] = ts
         save_state(st)
         return 0
+    bad_streak = 0
+    st["feed_bad_streak"] = 0
 
     # 2. RED TIER - emergencies, sent instantly -----------------------------
     for code, meaning in SQUAWKS.items():
@@ -474,33 +454,31 @@ def main():
             send("\n".join(lines), fr24_link(a), img,
                  title=f"SQUAWK {code} - {label(a)}", priority="urgent")
 
-    # 3. YELLOW TIER - interesting, queued for the digest --------------------
+    # 3. YELLOW TIER + DIVERSIONS -----------------------------------------
     run = st.get("run", 0) + 1
     st["run"] = run
     fetched = 0
     do_scan = ts - st.get("last_scan", 0) > SCAN_INTERVAL
     if not do_scan:
-        # Fast tick: emergencies only. The regional sweep is the expensive part,
-        # so it runs on its own slower cadence while alerts stay near real-time.
         st.update({"seen": seen, "queue": queue[-400:], "type_counts": counts,
                    "routes": routes, "prev": prev, "stats": stats,
-                   "last_run": now.isoformat()})
+                   "feed_bad_streak": bad_streak, "last_run": now.isoformat()})
         save_state(st)
         print(f"[{now:%H:%M:%S}] fast tick | feed OK ({n_ctrl}) | queued={len(queue)}")
         return 0
 
     st["last_scan"] = ts
-    picked = [REGIONS[(run + i) % len(REGIONS)] for i in range(2)]
+    global_picked = [REGIONS[(run + i) % len(REGIONS)] for i in range(2)]
+    picked = list(PRIORITY_REGIONS) + global_picked
     snapshots = []
     for lat, lon, rname in picked:
-        d = get(f"/v2/point/{lat}/{lon}/250") or {}
+        d = get(f"/v2/point/{lat}/{lon}/{SCAN_RADIUS_NM}") or {}
         snapshots.append((rname, d.get("ac", [])))
 
-    # Resolve unseen callsigns once, in parallel, within budget - before evaluating.
     cands = [(a.get("flight") or "").strip().upper()
              for _, acs in snapshots for a in acs
-             if (a.get("flight") or "").strip().upper()[:3] in AIRLINE_CC]
-    fetched = resolve_routes([c for c in cands if f"ff:{c}" not in seen],
+             if len((a.get("flight") or "").strip()) >= 4]
+    fetched = resolve_routes([c for c in cands if c not in routes],
                              routes, ROUTE_BUDGET)
 
     for rname, acs in snapshots:
@@ -511,7 +489,6 @@ def main():
             if typ:
                 counts[typ] = counts.get(typ, 0) + 1
 
-            # drones: emitter category B6, airborne and high
             alt = a.get("alt_baro")
             if not is_noise(a) and a.get("category") == "B6" and isinstance(alt, int) and alt > 5000:
                 key = f"uav:{hexid}"
@@ -523,7 +500,6 @@ def main():
                                           f"at {fmt_alt(a)} over {rname}",
                                   "fr24": fr24_link(a)})
 
-            # measured rarity: uncommon type once we have enough observations
             total = sum(counts.values())
             if not is_noise(a) and typ and total > 4000 and counts.get(typ, 0) <= max(2, total // 4000):
                 key = f"rare:{hexid}"
@@ -536,9 +512,6 @@ def main():
                                           f"{total:,} observations",
                                   "fr24": fr24_link(a)})
 
-            # SILENT DIVERSIONS - no squawk, but going somewhere it did not file.
-            # Time-critical, so this alerts immediately rather than waiting for
-            # the digest: a diversion is usually over inside half an hour.
             cs_d = (a.get("flight") or "").strip().upper()
             if cs_d and routes.get(cs_d) and f"div:{cs_d}" not in seen:
                 why = diversion_check(a, routes[cs_d])
@@ -548,7 +521,7 @@ def main():
                     r = routes[cs_d]
                     img, _ = tracks.render(hexid, f"/tmp/{hexid}.png")
                     send("\u26a0\ufe0f <b>POSSIBLE DIVERSION</b>\n\n"
-                         f"<b>{cs_d}</b> - {typ or '?'} ({a.get('r','?')})\n"
+                         f"<b>{cs_d}</b> - {typ or '?'} ({a.get('r','?')}) [{rname}]\n"
                          f"Filed: {r['iata']}\n"
                          f"{why.capitalize()}\n"
                          f"Position: {a['lat']:.3f}, {a['lon']:.3f}\n"
@@ -556,9 +529,6 @@ def main():
                          fr24_link(a), img,
                          title=f"Possible Diversion - {cs_d}", priority="high")
 
-            # ODD TRACK SHAPES - the category the group actually posts.
-            # Guarded against the two things that made this useless before:
-            # positions older than STALE_MAX, and stale duplicate coordinates.
             if (a.get("lat") is not None and isinstance(alt, int)
                     and not is_noise(a)):
                 p = prev.get(hexid)
@@ -589,7 +559,6 @@ def main():
                                     "fr24": fr24_link(a)})
                 prev[hexid] = [a["lat"], a["lon"], ts]
 
-            # fifth-freedom routings (cache-only: no network here)
             cs = (a.get("flight") or "").strip().upper()
             if cs and f"ff:{cs}" not in seen and cs in routes:
                 r = routes[cs]
@@ -619,9 +588,6 @@ def main():
         for c in chunks:
             send(c, title="Flight Alerts Digest")
 
-        # Pictures for the best-looking tracks. Rendering costs one fetch each,
-        # so only a bounded set of candidates is rendered, then ranked by how
-        # convoluted the path is - path length over bounding-box diagonal.
         cands = [q for q in queue if q.get("photo") and q.get("hex")][-25:]
         scored = []
         for q in cands:
@@ -660,7 +626,7 @@ def main():
         prev = dict(list(prev.items())[-5000:])
     st.update({"seen": seen, "queue": queue[-400:], "type_counts": counts,
                "routes": routes, "prev": prev, "stats": stats,
-               "last_run": now.isoformat()})
+               "feed_bad_streak": bad_streak, "last_run": now.isoformat()})
     save_state(st)
     print(f"[{now:%Y-%m-%d %H:%M UTC}] run #{run} | feed OK ({n_ctrl}) | "
           f"queued={len(queue)} | routes cached={len(routes)} (+{fetched}) | "
