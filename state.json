@@ -1,14 +1,24 @@
 {
  "last_feed_warn": 1795563825.366986,
  "last_green": 1795494719.39188,
- "last_run": "2026-11-24T23:42:44.195076+00:00",
- "last_scan": 1795563620.874921,
- "last_yellow": 1795561010.141118,
+ "last_run": "2026-11-25T00:00:10.499526+00:00",
+ "last_scan": 1795564810.499526,
+ "last_yellow": 1795564810.499526,
  "prev": {
+  "008d3c": [
+   -26.193315,
+   27.96179,
+   1795564810.499526
+  ],
   "04004c": [
    42.128844,
    -71.937774,
    1795563294.287685
+  ],
+  "04c15a": [
+   -24.611004,
+   28.576839,
+   1795564810.499526
   ],
   "06a11e": [
    -23.422577,
@@ -25346,220 +25356,27 @@
    1792833556.333722
   ]
  },
- "queue": [
-  {
-   "fr24": "https://www.flightradar24.com/BAW249",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>BAW249</b> LHR-GIG-EZE (B772)\n    foreign-to-foreign: GIG (BR) \u2192 EZE (AR)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/UPS237",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>UPS237</b> PHL-EMA-CGN (B763)\n    foreign-to-foreign: EMA (GB) \u2192 CGN (DE)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/FDX5201",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>FDX5201</b> DUB-STN-CDG (B763)\n    foreign-to-foreign: DUB (IE) \u2192 STN (GB); STN (GB) \u2192 CDG (FR)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/TAY4PO",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>TAY4PO</b> OPO-CDG (B734)\n    foreign-to-foreign: OPO (PT) \u2192 CDG (FR)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/UPS207",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>UPS207</b> SDF-STN-CGN (B763)\n    foreign-to-foreign: STN (GB) \u2192 CGN (DE)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/TAY6SO",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>TAY6SO</b> OSL-GOT-CDG (B738)\n    foreign-to-foreign: OSL (NO) \u2192 GOT (SE); GOT (SE) \u2192 CDG (FR)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/FDX700",
-   "hex": "a9b6a0",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>A30B</b> - FDX700 (N725FD) over US Northeast. Seen 115x in 1,460,632 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/RCH2005",
-   "hex": "ae0564",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>C5M</b> - RCH2005 (85-0007) over US Northeast. Seen 189x in 1,460,659 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/TLK557",
-   "hex": "c07cf9",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>LJ75</b> - TLK557 (C-GVIM) over US Northeast. Seen 191x in 1,460,998 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/00",
-   "hex": "87c832",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>P1</b> - 00 (5512) over Japan. Seen 165x in 1,461,229 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/JFS51",
-   "hex": "87cde4",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>KC2</b> - JFS51 (58-1218) over Japan. Seen 207x in 1,461,295 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/TAZ",
-   "hex": "7c6049",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>C441</b> - TAZ (VH-TAZ) over Australia. Seen 307x in 1,461,336 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/WHC",
-   "hex": "7c705e",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>RV4</b> - WHC (VH-WHC) over Australia. Seen 256x in 1,461,344 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/WLBY24",
-   "hex": "7cf98d",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>C27J</b> - WLBY24 (A34-001) over Australia. Seen 140x in 1,461,351 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/MMU",
-   "hex": "7c3e84",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>P28S</b> - MMU (VH-MMU) over Australia. Seen 115x in 1,461,359 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/IOG",
-   "hex": "7c2a7e",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>E300</b> - IOG (VH-IOG) over Australia. Seen 235x in 1,461,395 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/QTR1455",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>QTR1455</b> DOH-LUN-HRE (B788)\n    foreign-to-foreign: LUN (ZM) \u2192 HRE (ZW)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/UAE348",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>UAE348</b> DXB-SIN-KTI (B77W)\n    foreign-to-foreign: SIN (SG) \u2192 KTI (KH)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/UPS167",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>UPS167</b> SZX-SIN-HKG (B763)\n    foreign-to-foreign: SZX (CN) \u2192 SIN (SG); SIN (SG) \u2192 HKG (HK)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/VCV3727",
-   "hex": "0d8469",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>A346</b> - VCV3727 (YV3535) over Mexico. Seen 161x in 1,461,636 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/AMF6602",
-   "hex": "a395e3",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>BE99</b> - AMF6602 (N330AV) over US Northeast. Seen 279x in 1,462,417 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/TIGER12",
-   "hex": "ae4b2f",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>H53S</b> - TIGER12 (161259) over US West. Seen 186x in 1,462,928 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/VAMPYR01",
-   "hex": "abc123",
-   "icon": "\ud83d\udef8",
-   "kind": "UAV",
-   "photo": true,
-   "text": "<b>VAMPYR01</b> - unmanned aircraft at 12,875 ft over US West"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/YAB",
-   "hex": "7c7981",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>CT4</b> - YAB (VH-YAB) over Australia. Seen 45x in 1,463,148 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/NXF",
-   "hex": "7c4511",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>DHC2</b> - NXF (VH-NXF) over Australia. Seen 97x in 1,463,149 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/PE441",
-   "hex": "7c005d",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>JS32</b> - PE441 (VH-ACV) over Australia. Seen 311x in 1,463,155 observations"
-  }
- ],
+ "queue": [],
  "routes": {
-  "AAR602": null,
-  "ANA879": null,
-  "ANZ102": null,
+  "AFL1964": null,
+  "AFL7370": {
+   "airline": "AFL",
+   "iata": "SVO-KZN",
+   "legs": [
+    {
+     "cc": "RU",
+     "iata": "SVO",
+     "lat": 55.972599,
+     "lon": 37.4146
+    },
+    {
+     "cc": "RU",
+     "iata": "KZN",
+     "lat": 55.606201,
+     "lon": 49.278702
+    }
+   ]
+  },
   "AZU2861": null,
   "AZU4374": null,
   "GIA713": null,
@@ -25567,6 +25384,24 @@
   "GLO1229": null,
   "GLO1493": null,
   "GLO2119": null,
+  "KQA765": {
+   "airline": "KQA",
+   "iata": "JNB-NBO",
+   "legs": [
+    {
+     "cc": "ZA",
+     "iata": "JNB",
+     "lat": -26.1392,
+     "lon": 28.246
+    },
+    {
+     "cc": "KE",
+     "iata": "NBO",
+     "lat": -1.31924,
+     "lon": 36.927799
+    }
+   ]
+  },
   "MAS250": {
    "airline": "MAS",
    "iata": "SYD-KUL",
@@ -62669,11 +62504,10 @@
   "YANKE41": null,
   "YUBTC": null
  },
- "run": 24608,
+ "run": 24609,
  "seen": {
   "div:QTR74J": 1795562975.533041,
   "div:TAM4556": 1795559690.062363,
-  "div:UAL1047": 1795543022.713259,
   "div:UAL1805": 1795563294.287685,
   "ff:BAW249": 1795561689.104662,
   "ff:CAL5165": 1795561010.141118,
@@ -62690,11 +62524,8 @@
   "ff:TAY6IX": 1795560011.24397,
   "ff:TAY6SO": 1795561689.104662,
   "ff:TAY6TR": 1795560011.24397,
-  "ff:UAE214": 1795543022.713259,
   "ff:UAE348": 1795562659.609264,
-  "ff:UAE379": 1795543022.713259,
   "ff:UAE3HJ": 1795559690.062363,
-  "ff:UAL33": 1795543022.713259,
   "ff:UPS167": 1795562659.609264,
   "ff:UPS207": 1795561689.104662,
   "ff:UPS237": 1795561689.104662,
@@ -62704,7 +62535,6 @@
   "rare:43c6e1": 1795557683.6394,
   "rare:4d209e": 1795557683.6394,
   "rare:504e60": 1795558675.719492,
-  "rare:7000a1": 1795543022.713259,
   "rare:7335b5": 1795558360.951497,
   "rare:7c005d": 1795563620.874921,
   "rare:7c020d": 1795559690.062363,
@@ -62724,13 +62554,11 @@
   "rare:87cd23": 1795560336.490722,
   "rare:87cde4": 1795562023.858038,
   "rare:a00a60": 1795561010.141118,
-  "rare:a087d8": 1795543022.713259,
   "rare:a395e3": 1795563294.287685,
   "rare:a4c0d8": 1795559333.239649,
   "rare:a65835": 1795559333.239649,
   "rare:a80167": 1795559333.239649,
   "rare:a84189": 1795559333.239649,
-  "rare:a88cbd": 1795543022.713259,
   "rare:a98ac7": 1795558675.719492,
   "rare:a9b6a0": 1795561689.104662,
   "rare:ae0564": 1795561689.104662,
@@ -62741,7 +62569,6 @@
   "rare:ae4b2f": 1795563294.287685,
   "rare:ae4b47": 1795561010.141118,
   "rare:ae4b58": 1795559333.239649,
-  "rare:ae4cfd": 1795543022.713259,
   "rare:c00804": 1795557683.6394,
   "rare:c00a37": 1795559333.239649,
   "rare:c04a7d": 1795560011.24397,
@@ -62753,13 +62580,12 @@
   "uav:00000a": 1795559002.70133,
   "uav:a7cf73": 1795561010.141118,
   "uav:a98ac7": 1795558675.719492,
-  "uav:abc123": 1795563294.287685,
-  "uav:ac4e19": 1795543022.713259
+  "uav:abc123": 1795563294.287685
  },
  "stats": {
   "diversions": 16,
   "emergencies": 7,
-  "finds": 153
+  "finds": 179
  },
  "type_counts": {
   "A109": 1339,
@@ -62778,7 +62604,7 @@
   "A310": 119,
   "A318": 247,
   "A319": 29919,
-  "A320": 89306,
+  "A320": 89307,
   "A321": 48529,
   "A332": 7136,
   "A333": 15082,
@@ -62838,7 +62664,7 @@
   "B350": 2987,
   "B36T": 69,
   "B37M": 78,
-  "B38M": 88553,
+  "B38M": 88554,
   "B39M": 18135,
   "B407": 3198,
   "B412": 442,
@@ -62859,7 +62685,7 @@
   "B735": 315,
   "B736": 504,
   "B737": 28994,
-  "B738": 136170,
+  "B738": 136172,
   "B739": 17434,
   "B742": 119,
   "B743": 17,
@@ -62874,7 +62700,7 @@
   "B773": 758,
   "B77L": 13951,
   "B77W": 31698,
-  "B788": 15626,
+  "B788": 15627,
   "B789": 30370,
   "B78X": 7655,
   "BALL": 590,
@@ -62921,7 +62747,7 @@
   "C120": 63,
   "C130": 464,
   "C140": 276,
-  "C150": 4318,
+  "C150": 4319,
   "C152": 7221,
   "C162": 265,
   "C17": 1265,
