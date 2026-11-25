@@ -1,9 +1,9 @@
 {
  "last_feed_warn": 1795597921.840309,
  "last_green": 1795591632.295104,
- "last_run": "2026-11-25T09:10:52.907098+00:00",
- "last_scan": 1795597852.907098,
- "last_yellow": 1795595236.571986,
+ "last_run": "2026-11-25T09:24:11.998513+00:00",
+ "last_scan": 1795598651.998513,
+ "last_yellow": 1795598651.998513,
  "prev": {
   "000001": [
    28.989166,
@@ -33901,128 +33901,7 @@
    1792833556.333722
   ]
  },
- "queue": [
-  {
-   "fr24": "https://www.flightradar24.com/MPH8321",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>MPH8321</b> AMS-NBO-JNB (B744)\n    foreign-to-foreign: NBO (KE) \u2192 JNB (ZA)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/KEM251",
-   "hex": "00869b",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>CRJ1</b> - KEM251 (ZS-CMK) over S Africa. Seen 95x in 1,472,283 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/FDX1950",
-   "hex": "aa01e7",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>A30B</b> - FDX1950 (N744FD) over US Northeast. Seen 117x in 1,472,327 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/FDX77",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>FDX77</b> OAK-HNL-SYD-CAN (B77L)\n    foreign-to-foreign: SYD (AU) \u2192 CAN (CN)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/SIA7429",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>SIA7429</b> CVG-HNL-SYD-SIN (B77L)\n    foreign-to-foreign: CVG (US) \u2192 HNL (US); HNL (US) \u2192 SYD (AU)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/UPS33",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>UPS33</b> SYD-ICN (B748)\n    foreign-to-foreign: SYD (AU) \u2192 ICN (KR)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/UPS15",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>UPS15</b> SZX-BKK-DEL-CGN (B744)\n    foreign-to-foreign: SZX (CN) \u2192 BKK (TH); BKK (TH) \u2192 DEL (IN); DEL (IN) \u2192 CGN (DE)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/REV6LX",
-   "hex": "407117",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>F406</b> - REV6LX (G-RVLX) over W Europe. Seen 223x in 1,472,769 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/GVCRM",
-   "hex": "403723",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>RF6</b> - GVCRM (G-BUUC) over W Europe. Seen 231x in 1,472,786 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/AFR33YD",
-   "hex": "3950cf",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>A318</b> - AFR33YD (F-GUGP) over W Europe. Seen 248x in 1,473,065 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/TOK104",
-   "hex": "840d6e",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>AT46</b> - TOK104 (JA03QQ) over Japan. Seen 189x in 1,473,288 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/55115222",
-   "hex": "87c846",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>P1</b> - 55115222 (5523) over Japan. Seen 167x in 1,473,293 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/UPS67",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>UPS67</b> SGN-HKG-ICN-ANC-SDF (B748)\n    foreign-to-foreign: SGN (VN) \u2192 HKG (HK); HKG (HK) \u2192 ICN (KR)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/30534",
-   "hex": "14f127",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>A148</b> - 30534 (RA-61735) over Russia. Seen 105x in 1,473,427 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/UNIDENT",
-   "hex": "a98ac0",
-   "icon": "\ud83d\udef8",
-   "kind": "UAV",
-   "photo": true,
-   "text": "<b>UNIDENT</b> - unmanned aircraft at 13,950 ft over Gulf"
-  }
- ],
+ "queue": [],
  "routes": {
   "AZU2713": null,
   "AZU2769": null,
@@ -71034,7 +70913,7 @@
   "YANKE41": null,
   "YUBTC": null
  },
- "run": 24799,
+ "run": 24800,
  "seen": {
   "ff:AIC81P": 1795594252.880946,
   "ff:BOX725": 1795592623.615126,
@@ -71101,7 +70980,7 @@
  "stats": {
   "diversions": 0,
   "emergencies": 1,
-  "finds": 44
+  "finds": 59
  },
  "type_counts": {
   "A109": 1350,
