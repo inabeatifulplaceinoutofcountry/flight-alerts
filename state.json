@@ -1,10 +1,10 @@
 {
- "feed_bad_streak": 44,
+ "feed_bad_streak": 7,
  "last_feed_warn": 1795642806.132785,
  "last_green": 1795634154.944793,
- "last_run": "2026-11-25T21:38:03.230633+00:00",
- "last_scan": 1795642554.776159,
- "last_yellow": 1795640938.003657,
+ "last_run": "2026-11-25T22:25:38.370551+00:00",
+ "last_scan": 1795645538.370551,
+ "last_yellow": 1795645538.370551,
  "prev": {
   "002f67": [
    40.912062,
@@ -17747,16 +17747,7 @@
    1795634485.276372
   ]
  },
- "queue": [
-  {
-   "fr24": "https://www.flightradar24.com/YARASA",
-   "hex": "002f67",
-   "icon": "\ud83d\udef8",
-   "kind": "UAV",
-   "photo": true,
-   "text": "<b>YARASA</b> - unmanned aircraft at 17,000 ft over Marmara & Istanbul"
-  }
- ],
+ "queue": [],
  "routes": {
   ".4X-BAL": null,
   "4X-ERA": null,
@@ -19335,7 +19326,7 @@
   "YARASA": null,
   "ZSIMP": null
  },
- "run": 111,
+ "run": 112,
  "seen": {
   "div:PGT95XP": 1795636837.145796,
   "ff:UPS20": 1795640938.003657,
@@ -19408,7 +19399,7 @@
  "stats": {
   "diversions": 1,
   "emergencies": 1,
-  "finds": 64
+  "finds": 65
  },
  "type_counts": {
   "A139": 13,
