@@ -1,9 +1,9 @@
 {
- "feed_bad_streak": 50,
+ "feed_bad_streak": 8,
  "last_feed_warn": 1795721738.112362,
- "last_green": 1795634154.944793,
- "last_run": "2026-11-26T19:01:27.544620+00:00",
- "last_scan": 1795719687.54462,
+ "last_green": 1795722902.95268,
+ "last_run": "2026-11-26T19:55:02.952680+00:00",
+ "last_scan": 1795722902.95268,
  "last_yellow": 1795711949.282828,
  "prev": {
   "00000a": [
@@ -36531,7 +36531,7 @@
   "YRREV": null,
   "ZSIMP": null
  },
- "run": 371,
+ "run": 372,
  "seen": {
   "ff:UAE5RQ": 1795705078.201861,
   "rare:008fef": 1795708066.045202,
@@ -36574,9 +36574,9 @@
   "uav:a98ac7": 1795704442.768158
  },
  "stats": {
-  "diversions": 1,
-  "emergencies": 2,
-  "finds": 178
+  "diversions": 0,
+  "emergencies": 0,
+  "finds": 0
  },
  "type_counts": {
   "A109": 4,
