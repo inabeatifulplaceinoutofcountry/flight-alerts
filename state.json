@@ -1,10 +1,10 @@
 {
- "feed_bad_streak": 17,
+ "feed_bad_streak": 5,
  "last_feed_warn": 1795667083.264682,
  "last_green": 1795634154.944793,
- "last_run": "2026-11-26T04:22:40.780931+00:00",
- "last_scan": 1795666822.135106,
- "last_yellow": 1795664448.138204,
+ "last_run": "2026-11-26T04:45:10.937652+00:00",
+ "last_scan": 1795668310.937652,
+ "last_yellow": 1795668310.937652,
  "prev": {
   "00000a": [
    -26.06092,
@@ -26837,120 +26837,7 @@
    1795634485.276372
   ]
  },
- "queue": [
-  {
-   "fr24": "https://www.flightradar24.com/EFC69B",
-   "hex": "8964ee",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>EFC69B</b> (SR22, A6-CTH) - low-level orbit\n    1.4 nm of an expected 21 (7%) at 850 ft over Persian Gulf"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/EFC14C",
-   "hex": "8964f2",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>EFC14C</b> (SR22, A6-CTL) - low-level orbit\n    7.1 nm of an expected 23 (31%) at 3,875 ft over Persian Gulf"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/AHX802",
-   "hex": "8404f3",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>AT46</b> - AHX802 (JA01AM) over Japan. Seen 2x in 26,205 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/ANA589",
-   "hex": "868710",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>B773</b> - ANA589 (JA755A) over Japan. Seen 1x in 26,285 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/WGTL33",
-   "hex": "7cf8f3",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>E737</b> - WGTL33 (A30-004) over Australia. Seen 1x in 26,368 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/KXL",
-   "hex": "7c35e7",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>C525</b> - KXL (VH-KXL) over Australia. Seen 5x in 26,417 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/CAR14",
-   "hex": "7cf079",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>SERV</b> - CAR14 (CAR 14) over Australia. Seen 5x in 26,430 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/SNPY21",
-   "hex": "7cfa05",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>PC21</b> - SNPY21 (A54-046) over Australia. Seen 1x in 26,455 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/SNPY22",
-   "hex": "7cfa08",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>PC21</b> - SNPY22 (A54-049) over Australia. Seen 2x in 26,456 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/CPI264",
-   "hex": "30097a",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>GA6C</b> - CPI264 (I-ANIG) over Aegean & Izmir. Seen 4x in 26,555 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/FRS31",
-   "hex": "896c18",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>PC21</b> - FRS31 (942) over Persian Gulf. Seen 3x in 27,813 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/THY92W",
-   "hex": null,
-   "icon": "\ud83c\udf0d",
-   "kind": "ROUTE",
-   "photo": false,
-   "text": "<b>THY92W</b> DUR-JNB-IST (A359)\n    foreign-to-foreign: DUR (ZA) \u2192 JNB (ZA)"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/UZB282",
-   "hex": "507c9e",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>UZB282</b> (A320, UK32040) - holding / circling\n    13.0 nm of an expected 38 (34%) at 15,700 ft over Marmara & Istanbul"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/AEE985",
-   "hex": "46bc38",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>AT46</b> - AEE985 (SX-OAX) over Aegean & Izmir. Seen 3x in 27,907 observations"
-  }
- ],
+ "queue": [],
  "routes": {
   ".4X-BAL": null,
   "00000000": null,
@@ -30286,7 +30173,7 @@
   "YARASA": null,
   "ZSIMP": null
  },
- "run": 262,
+ "run": 263,
  "seen": {
   "ff:KLM462": 1795652256.359777,
   "ff:THY92W": 1795666822.135106,
@@ -30362,7 +30249,7 @@
  "stats": {
   "diversions": 1,
   "emergencies": 2,
-  "finds": 120
+  "finds": 134
  },
  "type_counts": {
   "A109": 1,
