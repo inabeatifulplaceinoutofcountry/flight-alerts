@@ -19,6 +19,7 @@ import os
 import re
 import sys
 import urllib.parse
+import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
@@ -101,7 +102,11 @@ def get(path, timeout=25):
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return json.loads(r.read().decode("utf-8", "replace"))
-    except Exception:
+    except urllib.error.HTTPError as e:
+        print(f"GET {path} -> HTTP {e.code} | retry-after={e.headers.get('Retry-After')} | {e.reason}")
+        return None
+    except Exception as e:
+        print(f"GET {path} -> {type(e).__name__}: {e}")
         return None
 
 
