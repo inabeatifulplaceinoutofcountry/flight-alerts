@@ -1,10 +1,10 @@
 {
- "feed_bad_streak": 13,
+ "feed_bad_streak": 6,
  "last_feed_warn": 1795710855.738386,
  "last_green": 1795634154.944793,
- "last_run": "2026-11-26T16:35:16.222625+00:00",
- "last_scan": 1795710721.003885,
- "last_yellow": 1795708066.045202,
+ "last_run": "2026-11-26T16:52:29.282828+00:00",
+ "last_scan": 1795711949.282828,
+ "last_yellow": 1795711949.282828,
  "prev": {
   "00000a": [
    -26.06092,
@@ -32052,48 +32052,7 @@
    1795705401.11157
   ]
  },
- "queue": [
-  {
-   "fr24": "https://www.flightradar24.com/UAE858",
-   "hex": "896622",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>UAE858</b> (A359, A6-EXE) - low-level orbit\n    3.5 nm of an expected 13 (27%) at 1,800 ft over Persian Gulf"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/IRM5104",
-   "hex": "7335f1",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>RJ85</b> - IRM5104 (EP-MOQ) over Russia. Seen 1x in 38,902 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/82479",
-   "hex": "154c32",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>T154</b> - 82479 (RA-85042) over Russia. Seen 1x in 38,904 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/UNIDENT",
-   "hex": "a98ac7",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>UNIDENT</b> (PAY3, N7139B) - holding / circling\n    1.3 nm of an expected 9 (14%) at 14,000 ft over Persian Gulf"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/32.93,34.12/11",
-   "hex": "739261",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b></b> (S76, 4X-BOD) - low-level orbit\n    3.9 nm of an expected 14 (28%) at 500 ft over Levant & E Med"
-  }
- ],
+ "queue": [],
  "routes": {
   ".4X-BAL": null,
   "00000000": null,
@@ -36481,7 +36440,7 @@
   "YRREV": null,
   "ZSIMP": null
  },
- "run": 366,
+ "run": 367,
  "seen": {
   "ff:UAE5RQ": 1795705078.201861,
   "rare:008fef": 1795708066.045202,
@@ -36526,7 +36485,7 @@
  "stats": {
   "diversions": 1,
   "emergencies": 2,
-  "finds": 173
+  "finds": 178
  },
  "type_counts": {
   "A109": 4,
