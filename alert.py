@@ -249,11 +249,11 @@ def is_noise(a):
 
 
 def fr24_link(a):
+    if a.get("lat") is not None and a.get("lon") is not None:
+        return f"https://www.flightradar24.com/{a['lat']:.2f},{a['lon']:.2f}/11"
     cs = (a.get("flight") or "").strip()
     if cs:
         return f"https://www.flightradar24.com/{cs}"
-    if a.get("lat") is not None and a.get("lon") is not None:
-        return f"https://www.flightradar24.com/{a['lat']:.2f},{a['lon']:.2f}/11"
     return "https://www.flightradar24.com/"
 
 
