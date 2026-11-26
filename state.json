@@ -1,5 +1,5 @@
 {
- "feed_bad_streak": 0,
+ "feed_bad_streak": 10,
  "last_feed_warn": 1795718099.678088,
  "last_green": 1795634154.944793,
  "last_run": "2026-11-26T19:01:27.544620+00:00",
