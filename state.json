@@ -1,10 +1,10 @@
 {
- "feed_bad_streak": 0,
- "last_feed_warn": 1795781002.343022,
+ "feed_bad_streak": 9,
+ "last_feed_warn": 1795814316.362286,
  "last_green": 1795809440.818067,
- "last_run": "2026-11-27T21:15:19.785459+00:00",
- "last_scan": 1795813860.743788,
- "last_yellow": 1795810768.043034,
+ "last_run": "2026-11-27T21:16:23.047719+00:00",
+ "last_scan": 1795814183.047719,
+ "last_yellow": 1795814183.047719,
  "prev": {
   "009e06": [
    -26.329108,
@@ -33857,272 +33857,7 @@
    1795705401.11157
   ]
  },
- "queue": [
-  {
-   "fr24": "https://www.flightradar24.com/25.75,51.07/11",
-   "hex": "a98ac9",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>UNIDENT</b> (C82S, N7139D) - holding / circling\n    1.3 nm of an expected 9 (15%) at 14,000 ft over Persian Gulf"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/40.42,-79.10/11",
-   "hex": "acdbf4",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>B712</b> - DAL1391 (N928AT) over US Northeast. Seen 11x in 71,769 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/38.37,-78.28/11",
-   "hex": "c0096f",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>CRJ1</b> - FEX888 (C-FDOW) over US Northeast. Seen 1x in 71,796 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/37.83,-77.72/11",
-   "hex": "aab9a8",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>LJ60</b> - JWZ790 (N790SU) over US Northeast. Seen 14x in 71,831 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/41.67,-77.15/11",
-   "hex": "a18694",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>LJ60</b> - CYO198 (N198HB) over US Northeast. Seen 15x in 71,883 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/38.82,-76.87/11",
-   "hex": "ae6235",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>B212</b> - MUSL (69-6637) over US Northeast. Seen 10x in 71,918 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/39.03,-76.86/11",
-   "hex": "ae6233",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>B212</b> - MUSL (69-6633) over US Northeast. Seen 11x in 71,920 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/39.67,-76.07/11",
-   "hex": "a12403",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>B37M</b> - UAL2777 (N17272) over US Northeast. Seen 2x in 71,978 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/41.11,-75.94/11",
-   "hex": "a996e1",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>B712</b> - DAL2573 (N717JL) over US Northeast. Seen 12x in 71,985 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/40.83,-74.10/11",
-   "hex": "a6e38d",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>LJ60</b> - STY543 (N543EZ) over US Northeast. Seen 16x in 72,108 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/40.23,-74.09/11",
-   "hex": "a2bce6",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>LJ60</b> - CYO276 (N276BG) over US Northeast. Seen 17x in 72,110 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/43.55,-72.88/11",
-   "hex": "a94279",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>LJ60</b> - CYO696 (N696RB) over US Northeast. Seen 18x in 72,211 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/43.42,-72.07/11",
-   "hex": "ad1fee",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>P212</b> - KAP801 (N945CA) over US Northeast. Seen 9x in 72,232 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/42.37,-71.01/11",
-   "hex": "a380cb",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>C402</b> - KAP1022 (N3249M) over US Northeast. Seen 15x in 72,265 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/42.31,-70.89/11",
-   "hex": "a395e3",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>BE99</b> - AMF6601 (N330AV) over US Northeast. Seen 2x in 72,275 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/42.15,-70.89/11",
-   "hex": "a08689",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>P212</b> - KAP235 (N133CA) over US Northeast. Seen 10x in 72,276 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/40.83,31.69/11",
-   "hex": "32b406",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>KAYI0002</b> (?, ?) - holding / circling\n    0.9 nm of an expected 33 (3%) at 16,500 ft over Marmara & Istanbul"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/-32.50,149.31/11",
-   "hex": "7c01b3",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>PC24</b> - AM231 (VH-AMD) over Australia. Seen 16x in 72,677 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/-30.17,151.91/11",
-   "hex": "7c7885",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>EFOX</b> - JST430 (VH-X3B) over Australia. Seen 2x in 72,719 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/-33.49,152.80/11",
-   "hex": "7c6276",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>DH8B</b> - SKP11 (VH-TQG) over Australia. Seen 4x in 72,727 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/-22.68,-47.07/11",
-   "hex": "e49d96",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>MC01</b> - SAFE03 (PS-SFH) over Brazil. Seen 1x in 72,759 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/-22.75,-46.75/11",
-   "hex": "e48f8a",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>B429</b> - NA (PP-BLA) over Brazil. Seen 4x in 72,767 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/-22.46,-46.06/11",
-   "hex": "e49938",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>TUCA</b> - CO13 (FAB1333) over Brazil. Seen 2x in 72,787 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/27.09,80.08/11",
-   "hex": "7335a7",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>A346</b> - IRM077 (EP-MMG) over India. Seen 3x in 73,192 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/-31.03,150.82/11",
-   "hex": "7c1924",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>E82</b> (?, ?) - low-level orbit\n    2.5 nm of an expected 16 (16%) at 1,925 ft over Australia"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/-34.04,151.21/11",
-   "hex": "7c1597",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>EJT</b> (C25A, VH-EJT) - low-level orbit\n    6.9 nm of an expected 22 (31%) at 1,375 ft over Australia"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/-31.01,151.74/11",
-   "hex": "7c7807",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>R22</b> - QFA589 (VH-XZT) over Australia. Seen 15x in 73,614 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/-32.91,151.81/11",
-   "hex": "7c7f81",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>ZGZ</b> (EC35, VH-ZGZ) - low-level orbit\n    1.6 nm of an expected 16 (10%) at 1,000 ft over Australia"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/40.89,31.63/11",
-   "hex": "32b408",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>KAYI0003</b> (?, ?) - holding / circling\n    2.0 nm of an expected 12 (18%) at 14,000 ft over Marmara & Istanbul"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/40.85,31.61/11",
-   "hex": "32b408",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>KAYI0003</b> (?, ?) - holding / circling\n    2.6 nm of an expected 13 (21%) at 14,000 ft over Marmara & Istanbul"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/40.87,31.65/11",
-   "hex": "32b406",
-   "icon": "\ud83c\udf00",
-   "kind": "SHAPE",
-   "photo": true,
-   "text": "<b>KAYI0002</b> (?, ?) - holding / circling\n    2.8 nm of an expected 13 (20%) at 16,500 ft over Marmara & Istanbul"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/42.31,24.01/11",
-   "hex": "ae1179",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>C17</b> - RCH5001 (02-1107) over Marmara & Istanbul. Seen 14x in 74,355 observations"
-  },
-  {
-   "fr24": "https://www.flightradar24.com/23.37,58.35/11",
-   "hex": "71002e",
-   "icon": "\u2728",
-   "kind": "RARE",
-   "photo": true,
-   "text": "<b>A346</b> - HZA42 (HZ-A42) over Persian Gulf. Seen 4x in 75,049 observations"
-  }
- ],
+ "queue": [],
  "routes": {
   "0000": null,
   "ABQ270": null,
@@ -42093,7 +41828,7 @@
   "ZKXXK": null,
   "ZSIMP": null
  },
- "run": 776,
+ "run": 777,
  "seen": {
   "div:PGT95XP": 1795811104.900184,
   "ff:FDX6335": 1795810425.423664,
@@ -42152,7 +41887,7 @@
  "stats": {
   "diversions": 1,
   "emergencies": 0,
-  "finds": 17
+  "finds": 50
  },
  "type_counts": {
   "A109": 7,
