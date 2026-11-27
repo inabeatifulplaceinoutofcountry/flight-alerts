@@ -1,8 +1,8 @@
 {
- "feed_bad_streak": 0,
- "last_feed_warn": 1795741180.407309,
+ "feed_bad_streak": 6,
+ "last_feed_warn": 1795745734.53092,
  "last_green": 1795722902.95268,
- "last_run": "2026-11-27T02:09:18.080351+00:00",
+ "last_run": "2026-11-27T02:13:32.422923+00:00",
  "last_scan": 1795745358.080351,
  "last_yellow": 1795744402.748314,
  "prev": {
@@ -44459,7 +44459,7 @@
   "ZKXXK": null,
   "ZSIMP": null
  },
- "run": 565,
+ "run": 569,
  "seen": {
   "div:ASL426": 1795740595.401394,
   "div:THY8NV": 1795733490.449372,
